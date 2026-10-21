@@ -122,18 +122,31 @@ class FollowUpActivity(Base):
     __tablename__ = "follow_up_activities"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
+
     lead_id: Mapped[int] = mapped_column(
-        ForeignKey("leads.id", ondelete="CASCADE"), nullable=False, index=True
+        ForeignKey("leads.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
     )
+
     owner_id: Mapped[int] = mapped_column(
-        ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
     )
+
     action: Mapped[str] = mapped_column(String(20), nullable=False)
+
     scheduled_at: Mapped[datetime | None] = mapped_column(
         DateTime(timezone=True), nullable=True
     )
+
     note: Mapped[str | None] = mapped_column(Text, nullable=True)
+
     status: Mapped[str] = mapped_column(String(20), nullable=False)
+
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now(), nullable=False
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
     )
