@@ -1,4 +1,8 @@
 
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "ai-lead-recovery"
 version = "0.1.0"
@@ -21,3 +25,6 @@ dependencies = [
 
 [tool.fastapi]
 entrypoint = "backend.main:app"
+
+[tool.setuptools.packages.find]
+include = ["backend", "backend.*"]
