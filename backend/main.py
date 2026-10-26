@@ -6,7 +6,7 @@ from typing import Annotated
 
 import logging
 
-from backend.ai_service import (
+from ai_service import (
     generate_follow_up,
     generate_lead_insights,
 )
