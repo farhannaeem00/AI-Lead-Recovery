@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from decimal import Decimal
 from typing import Annotated
+from fastapi.middleware.cors import CORSMiddleware
 
 import logging
 
@@ -59,6 +60,16 @@ app = FastAPI(
     description="Lead management, qualification scoring, and follow-up tracking.",
     version="1.1.0",
     lifespan=lifespan,
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://ai-lead-recovery-frontend.vercel.app",
+        "https://ai-lead-recovery-frontend-git-main-farhannaeem00s-projects.vercel.app",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
