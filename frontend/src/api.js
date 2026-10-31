@@ -1,5 +1,9 @@
 
-const API_BASE = "/api";
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://ai-lead-recovery-d2f26a90.fastapicloud.dev"
+).replace(/\/+$/, "");
+
 const TOKEN_KEY = "leadflow_token";
 
 // Authentication token helpers
@@ -35,7 +39,7 @@ async function request(path, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const response = await fetch(`${API_BASE}/api${path}`, {
     ...options,
     headers,
   });
