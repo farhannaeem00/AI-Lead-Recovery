@@ -61,11 +61,22 @@ app = FastAPI(
     version="1.1.0",
     lifespan=lifespan,
 )
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=[
+#         "https://ai-lead-recovery-frontend.vercel.app",
+#         "https://ai-lead-recovery-frontend-git-main-farhannaeem00s-projects.vercel.app",
+#     ],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://ai-lead-recovery-frontend.vercel.app",
-        "https://ai-lead-recovery-frontend-git-main-farhannaeem00s-projects.vercel.app",
+        origin.strip()
+        for origin in settings.frontend_url.split(",")
+        if origin.strip()
     ],
     allow_credentials=True,
     allow_methods=["*"],
